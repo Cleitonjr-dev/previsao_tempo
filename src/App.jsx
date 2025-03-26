@@ -1,15 +1,18 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import './App.css';
 import WeatherInformations from './components/WeatherInformations/WeatherInformations';
 import WeatherInformations5Days from './components/WeatherInformations5Days/WeatherInformations5Days';
 import { getCurrentWeather, get5DaysForecast } from './http/weatherApi';
+import { WeatherContext } from './WeatherContext/WeatherContext';
+import RainAnimation from './components/RainAnimation/RainAnimation';
 
 function App() {
   const [weather, setWeather] = useState(null);
   const [weather5Days, setWeather5Days] = useState(null);
   const [error, setError] = useState(null);
   const inputRef = useRef();
-
+  const { isRaining } = useContext(WeatherContext);
+  
   async function searchCity() {
     const city = inputRef.current.value.trim();
 
@@ -37,6 +40,7 @@ function App() {
 
   return (
     <div className="container">
+      {isRaining && <RainAnimation />}
       <h1>Previsão do tempo</h1>
       <input ref={inputRef} type="text" placeholder="Digite o nome da cidade" />
       <button onClick={searchCity}>Buscar</button>
