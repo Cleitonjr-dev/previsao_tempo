@@ -1,0 +1,32 @@
+.cloud-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cloud {
+  position: absolute;
+  animation: cloud-move 60s linear infinite;
+  will-change: transform;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px; /* Tamanho padrão */
+  height: 70px; /* Tamanho padrão */
+  top: 10%;
+  left: -10%;
+  min-width: 100px; /* Adicionando min-width */
+}
+
+@keyframes cloud-move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(350vw); /* Aumentando o translateX para 350vw */
+  }
+}
