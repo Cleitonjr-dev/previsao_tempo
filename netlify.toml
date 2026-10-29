@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# A função em netlify/functions/weather.ts responde em /api/weather e é a única
+# que conhece a chave do OpenWeather (variável de ambiente OPENWEATHER_API_KEY).
+[functions]
+  directory = "netlify/functions"
