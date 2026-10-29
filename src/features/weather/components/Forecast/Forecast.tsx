@@ -10,22 +10,28 @@ function Forecast({ forecast }: ForecastProps) {
 
   return (
     <div className="my-5 rounded-[10px] bg-[rgba(255,255,255,0.8)] p-5">
-      <h3 className="mb-[15px] text-[1.5rem] text-balance">Previsão para os próximos 5 dias</h3>
-      <div className="flex flex-wrap items-center justify-center gap-2.5">
+      <h3 className="mb-[15px] text-[1.5rem]">Próximos 5 dias</h3>
+      {/* Celular e tablet: uma linha por dia. Telas largas: 5 colunas, uma por dia. */}
+      <ul className="mx-auto flex max-w-[480px] list-none flex-col gap-2.5 lg:grid lg:max-w-none lg:grid-cols-5">
         {days.map((day) => (
-          <div
+          <li
             key={day.date}
-            className="rounded-[10px] bg-[rgba(255,255,255,0.7)] p-2.5 text-center"
+            className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 rounded-[10px] bg-[rgba(255,255,255,0.7)] p-2.5 text-left lg:flex lg:flex-col lg:gap-x-0 lg:text-center"
           >
-            <p className="text-[1rem] capitalize">{formatDay(day.date)}</p>
-            <img src={`https://openweathermap.org/img/wn/${day.icon}.png`} alt="" />
-            <p>{day.description}</p>
-            <p>
-              {Math.round(day.min)}ºC min / {Math.round(day.max)}ºC máx
-            </p>
-          </div>
+            <img
+              src={`https://openweathermap.org/img/wn/${day.icon}.png`}
+              alt=""
+              className="row-span-2 lg:order-2"
+            />
+            <p className="col-start-2 capitalize lg:order-1">{formatDay(day.date)}</p>
+            <p className="col-start-2 lg:order-3">{day.description}</p>
+            <div className="col-start-3 row-span-2 row-start-1 text-right lg:order-4 lg:text-center">
+              <p className="font-bold">{Math.round(day.max)}ºC máx</p>
+              <p>{Math.round(day.min)}ºC mín</p>
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

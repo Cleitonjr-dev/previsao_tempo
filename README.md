@@ -14,7 +14,7 @@ _Capturas feitas com dados de exemplo._
 
 - Busca por nome da cidade (botão **Buscar** ou Enter).
 - Clima atual: temperatura, descrição, sensação térmica, umidade e pressão.
-- Previsão dos próximos 5 dias, com mínima e máxima de cada dia no fuso da cidade.
+- Previsão dos próximos 5 dias, com mínima e máxima de cada dia no fuso da cidade: uma linha por dia no celular e no tablet, e 5 colunas a partir de 1024 px.
 - Fundo e animação conforme o código de condição do OpenWeather: chuva (trovoada, garoa e chuva), neve e nuvens; céu limpo não tem animação.
 - Mensagens claras para cidade não encontrada, campo vazio e falhas do serviço.
 - As animações são desligadas para quem prefere menos movimento (`prefers-reduced-motion`).
@@ -89,3 +89,4 @@ src/
 - **Condição pelo código da API:** a animação usa o `id` do OpenWeather, e não o texto da descrição, que depende do idioma.
 - **Previsão por dia:** o OpenWeather devolve intervalos de 3 horas; eles são agrupados pela data da cidade e a descrição do dia é a do intervalo mais próximo do meio-dia.
 - **Tailwind sem preflight:** o visual original depende dos estilos nativos do navegador; o Tailwind entra só com tema e utilitárias, para o layout ficar idêntico ao da versão anterior.
+- **Previsão de 5 dias responsiva:** foi a única parte do visual redesenhada em relação à versão original. Os cartões altos empilhados deram lugar a uma linha por dia (celular e tablet) e a 5 colunas (a partir de 1024 px), e o título ficou curto ("Próximos 5 dias") para nunca quebrar de linha.

@@ -90,8 +90,9 @@ describe('App', () => {
     expect(screen.getByText('Sensação térmica: 30ºC')).toBeInTheDocument();
     expect(screen.getByText('Umidade: 80%')).toBeInTheDocument();
     expect(screen.getByText('Pressão: 1012 hPa')).toBeInTheDocument();
-    expect(screen.getByText('Previsão para os próximos 5 dias')).toBeInTheDocument();
-    expect(screen.getAllByText('20ºC min / 30ºC máx')).toHaveLength(5);
+    expect(screen.getByRole('heading', { name: 'Próximos 5 dias' })).toBeInTheDocument();
+    expect(screen.getAllByText('30ºC máx')).toHaveLength(5);
+    expect(screen.getAllByText('20ºC mín')).toHaveLength(5);
   });
 
   it('should search when Enter is pressed', async () => {
