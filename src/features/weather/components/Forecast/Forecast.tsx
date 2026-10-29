@@ -10,8 +10,8 @@ function Forecast({ forecast }: ForecastProps) {
 
   return (
     <div className="my-5 rounded-[10px] bg-[rgba(255,255,255,0.8)] p-5">
-      <h3 className="mb-[15px] text-[1.5rem]">Previsão para os próximos 5 dias</h3>
-      <div className="flex flex-wrap items-center justify-between gap-2.5">
+      <h3 className="mb-[15px] text-[1.5rem] text-balance">Previsão para os próximos 5 dias</h3>
+      <div className="flex flex-wrap items-center justify-center gap-2.5">
         {days.map((day) => (
           <div
             key={day.date}
