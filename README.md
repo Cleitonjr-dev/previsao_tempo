@@ -64,9 +64,51 @@ Para rodar os testes uma vez: `npm test -- --run`.
 
 ## Deploy no Netlify
 
-1. Publique pelo repositório no Git (necessário para as Functions serem construídas; arrastar a pasta `dist` não publica a função).
-2. Em **Site configuration > Environment variables**, crie `OPENWEATHER_API_KEY` com a sua chave.
-3. O `netlify.toml` já define o build (`npm run build`), a pasta `dist` e a pasta das funções.
+O `netlify.toml` já define o build (`npm run build`), a pasta `dist` e a pasta das funções.
+
+> **Não publique arrastando a pasta `dist`:** esse tipo de deploy não leva a função `weather.ts`, e sem ela a busca não funciona (`/api/weather` responde 404).
+
+### 1. Criar a variável da chave (uma vez só)
+
+1. No Netlify, abra o site e vá em **Site configuration > Environment variables**.
+2. Clique em **Add a variable > Add a single variable**.
+3. Em **Key**, digite `OPENWEATHER_API_KEY` (sem `VITE_`). Em **Value**, cole a sua chave do OpenWeather (https://home.openweathermap.org/api_keys).
+4. Marque **Contains secret values**, deixe **All scopes** e clique em **Create variable**.
+
+A variável só vale para deploys feitos depois de criada.
+
+### 2. Publicar uma atualização
+
+**Opção A: pelo terminal (manual)**
+
+Na primeira vez, instale e ligue a pasta ao site:
+
+```bash
+npm install -g netlify-cli
+netlify login
+netlify link --name <nome-do-site>
+```
+
+Depois, a cada atualização, na pasta do projeto:
+
+```bash
+netlify deploy --prod
+```
+
+O comando roda o build, empacota a função e publica em produção. No fim, o texto deve citar a função `weather`.
+
+**Opção B: pelo GitHub (automático)**
+
+Em **Site configuration > Build & deploy > Continuous deployment > Link repository**, escolha o repositório e a branch `main`. A partir daí, cada `git push` publica sozinho (o botão **Trigger deploy** também passa a existir).
+
+### 3. Conferir
+
+Abra o site e busque uma cidade. Se aparecer "Ocorreu um erro ao buscar os dados", veja **Logs > Functions > weather** no Netlify:
+
+- "Variável OPENWEATHER_API_KEY não configurada": a variável não existe, o nome está errado ou ela foi criada depois do deploy (publique de novo).
+- "OpenWeather respondeu com HTTP 401": a chave está errada (uma chave nova pode demorar a ativar).
+
+Atenção: arquivos de teste não podem ficar dentro de `netlify/functions`, porque o Netlify trata cada arquivo ali como uma função (e recusa nomes com ponto, como `weather.test.ts`). Por isso o teste fica em `netlify/weather.test.ts`.
 
 ## Estrutura
 
