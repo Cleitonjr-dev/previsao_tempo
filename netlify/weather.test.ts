@@ -1,5 +1,5 @@
 // @vitest-environment node
-import handler from './weather';
+import handler from './functions/weather';
 
 const KEY = 'chave-secreta-de-teste';
 
