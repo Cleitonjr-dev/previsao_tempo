@@ -44,9 +44,9 @@ async function search(city: string) {
   await user.click(screen.getByRole('button', { name: 'Buscar' }));
 }
 
-const rain = () => document.querySelector('.rain-container');
-const snow = () => document.querySelector('.snowflakes');
-const clouds = () => document.querySelector('.cloud-container');
+const rain = () => document.querySelector('[data-animation=rain]');
+const snow = () => document.querySelector('[data-animation=snow]');
+const clouds = () => document.querySelector('[data-animation=clouds]');
 
 describe('App', () => {
   beforeEach(() => {

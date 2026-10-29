@@ -1,40 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/*
+ * Tailwind sem o preflight: o visual original depende dos estilos padrão do navegador
+ * (títulos em negrito, imagens em linha, botão e campo com a fonte nativa), então só
+ * o tema e as utilitárias são carregados e o reset abaixo é o mesmo de antes.
+ */
+@layer theme, base, components, utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@theme {
+  --font-roboto: 'Roboto', sans-serif;
+
+  --animate-rain: rain 0.5s linear infinite;
+  --animate-fall: fall 2s linear infinite;
+  --animate-cloud-move: cloud-move 60s linear infinite;
+
+  @keyframes rain {
+    to {
+      transform: translateY(100vh);
+    }
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh);
+    }
+  }
+
+  @keyframes cloud-move {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(350vw);
+    }
+  }
 }
 
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  color: #333;
-  line-height: 1.6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to right, #00b4db, #0083b0);
-  transition: background 0.5s ease;
-}
-
-body[data-condition='rain'] {
-  background: linear-gradient(to right, #4c669f, #3b5998);
-}
-
-body[data-condition='snow'],
-body[data-condition='clouds'] {
-  background: linear-gradient(to right, #2d91c2 0%, #1e528e);
-}
-
-#root {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }

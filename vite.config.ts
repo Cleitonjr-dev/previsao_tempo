@@ -1,4 +1,5 @@
 import { Readable } from 'node:stream';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { loadEnv, type Plugin } from 'vite';
 import { defineConfig } from 'vitest/config';
@@ -48,7 +49,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
-    plugins: [react(), weatherFunctionDev(env.OPENWEATHER_API_KEY)],
+    plugins: [react(), tailwindcss(), weatherFunctionDev(env.OPENWEATHER_API_KEY)],
     test: {
       environment: 'jsdom',
       globals: true,

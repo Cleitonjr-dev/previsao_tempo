@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="h-full w-full">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/weather.svg" />
@@ -9,10 +9,18 @@
       content="Consulte o clima atual e a previsão dos próximos 5 dias de qualquer cidade."
     />
     <title>Previsão do tempo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    />
   </head>
 
-  <body>
-    <div id="root"></div>
+  <body
+    class="flex h-full w-full items-center justify-center bg-[linear-gradient(to_right,#00b4db,#0083b0)] font-roboto leading-[1.6] text-[#333] transition-[background] duration-500 ease-[ease] data-[condition=clouds]:bg-[linear-gradient(to_right,#2d91c2_0%,#1e528e)] data-[condition=rain]:bg-[linear-gradient(to_right,#4c669f,#3b5998)] data-[condition=snow]:bg-[linear-gradient(to_right,#2d91c2_0%,#1e528e)]"
+  >
+    <div id="root" class="flex h-full w-full flex-col"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

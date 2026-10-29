@@ -1,7 +1,6 @@
 import { useState, type CSSProperties } from 'react';
 import cloudImage from './cloud.png';
 import darkCloudImage from './darkCloud.png';
-import './CloudAnimation.css';
 
 const CLOUD_COUNT = 80;
 
@@ -37,9 +36,17 @@ function CloudAnimation() {
   const [clouds] = useState(createCloudStyles);
 
   return (
-    <div className="cloud-container" aria-hidden="true">
+    <div
+      data-animation="clouds"
+      aria-hidden="true"
+      className="pointer-events-none absolute top-0 left-0 z-1 h-full w-full overflow-hidden"
+    >
       {clouds.map((style, index) => (
-        <div key={index} className="cloud" style={style}></div>
+        <div
+          key={index}
+          className="absolute animate-cloud-move bg-contain bg-no-repeat will-change-transform"
+          style={style}
+        ></div>
       ))}
     </div>
   );
